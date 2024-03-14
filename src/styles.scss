@@ -1,1 +1,54 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+mat.$theme-ignore-duplication-warnings: true;
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@include mat.core();
+
+// Light Theme variables
+$RealTimeTaskManagement-light-primary: mat.define-palette(mat.$blue-palette, 500,100,700);
+$RealTimeTaskManagement-light-accent: mat.define-palette(mat.$gray-palette,300,100,700);
+// Dark Theme variables
+$RealTimeTaskManagement-dark-primary: mat.define-palette(mat.$gray-palette);
+$RealTimeTaskManagement-dark-accent: mat.define-palette(mat.$orange-palette,300,100,700);
+
+// The warn palette is optional (defaults to red).
+$RealTimeTaskManagement-warn: mat.define-palette(mat.$red-palette);
+
+// Light theme defined
+$RealTimeTaskManagement-light-theme: mat.define-light-theme((
+  color: (
+    primary: $RealTimeTaskManagement-light-primary,
+    accent: $RealTimeTaskManagement-light-accent,
+    warn: $RealTimeTaskManagement-warn,
+  ),
+  typography: mat.define-typography-config(
+    $font-family: "Source Sans 3, sans-serif"
+  ),
+  density: 0
+));
+
+// Dark theme defined
+$RealTimeTaskManagement-dark-theme: mat.define-dark-theme((
+  color: (
+    primary: $RealTimeTaskManagement-dark-primary,
+    accent: $RealTimeTaskManagement-dark-accent,
+    warn: $RealTimeTaskManagement-warn,
+  ),
+  typography: mat.define-typography-config(
+    $font-family: "Source Sans 3, sans-serif"
+  ),
+  density: 1
+));
+
+@include mat.all-component-themes($RealTimeTaskManagement-light-theme);
+
+body.dark-theme {
+  @include mat.all-component-themes($RealTimeTaskManagement-dark-theme);
+}
+
+
+html, body { height: 100%; }
+body { margin: 0; }
